@@ -1,0 +1,39 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "api": "cd service/api && bun dev",
+    "build": "cd service/api && bun run build",
+    "generate": "cd service/api && bun generate",
+    "migrate:local": "cd service/api && bun migrate:local",
+    "seed:local": "cd service/api && bun seed:local",
+    "migrate": "cd service/api && bun migrate",
+    "seed": "cd service/api && bun seed",
+    "studio": "cd service/api && bun studio",
+    "check-deps": "check-dependency-version-consistency .",
+    "check-types": "tsc --noEmit",
+    "check-db": "cd service/api && bun check:sqlite",
+    "format": "bun x @biomejs/biome format --write ./service",
+    "lint": "bun x @biomejs/biome lint ./service",
+    "fix": "bun x @biomejs/biome check --apply-unsafe ./service",
+    "deps:fix": "manypkg fix",
+    "deps:update": "bun x npm-check-updates -ui -ws",
+    "postinstall": "bun check-deps && bun format",
+    "clean": "git clean -xdf node_modules && rm bun.lockb",
+    "clean:all": "npm-run-all clean",
+    "hygen:generate": "cd service/api && bun hygen:generate"
+  },
+  "workspaces": [
+    "service/*"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.23.2",
+    "@biomejs/biome": "1.3.3",
+    "@manypkg/cli": "^0.21.0",
+    "check-dependency-version-consistency": "^4.1.0",
+    "hygen": "^6.2.11",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.2.2"
+  }
+}

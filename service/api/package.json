@@ -1,0 +1,37 @@
+{
+  "name": "chat-api",
+  "version": "q.0.0",
+  "main": "cmd/server/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "bun run build",
+    "generate": "drizzle-kit generate:sqlite --schema=./schema/db/schema.ts --out=./schema/db/migrations",
+    "migrate": "wrangler d1 migrations apply test-app",
+    "migrate:local": "wrangler d1 migrations apply local-app --local",
+    "seed": "wrangler d1 execute test-app --file=./data/db/seed.sql",
+    "seed:local": "wrangler d1 execute local-app --local --file=./data/db/seed.sql",
+    "studio": "drizzle-kit studio",
+    "deploy": "wrangler deploy --minify cmd/server/index.ts",
+    "clean": "rm -rf ./node_modules",
+    "check:sqlite": "drizzle-kit check:sqlite",
+    "hygen:generate": "hygen new template"
+  },
+  "dependencies": {
+    "@tsndr/cloudflare-worker-jwt": "2.3.2",
+    "drizzle-orm": "^0.29.0",
+    "drizzle-valibot": "beta",
+    "hono": "^3.10.1",
+    "miniflare": "3.20231030.0",
+    "valibot": "^0.20.1",
+    "@hono/swagger-ui": "^0.1.0",
+    "@hono/zod-openapi": "^0.8.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "bun-types": "^1.0.12",
+    "drizzle-kit": "^0.20.2",
+    "typescript": "^5.2.2",
+    "wrangler": "^3.16.0",
+    "better-sqlite3": "^9.1.1"
+  }
+}

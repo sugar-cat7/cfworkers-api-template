@@ -1,0 +1,11 @@
+name = "api"
+compatibility_date = "2023-10-16"
+send_metrics = false
+node_compat = true
+main = "cmd/server/index.ts"
+
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "test-app"
+database_id = "xxx"
