@@ -4,34 +4,27 @@
   "main": "cmd/server/index.ts",
   "scripts": {
     "dev": "wrangler dev",
-    "build": "bun run build",
-    "generate": "drizzle-kit generate:sqlite --schema=./schema/db/schema.ts --out=./schema/db/migrations",
-    "migrate": "wrangler d1 migrations apply test-app",
-    "migrate:local": "wrangler d1 migrations apply local-app --local",
-    "seed": "wrangler d1 execute test-app --file=./data/db/seed.sql",
-    "seed:local": "wrangler d1 execute local-app --local --file=./data/db/seed.sql",
-    "studio": "drizzle-kit studio",
-    "deploy": "wrangler deploy --minify cmd/server/index.ts",
-    "clean": "rm -rf ./node_modules",
-    "check:sqlite": "drizzle-kit check:sqlite",
-    "hygen:generate": "hygen new template"
+    "db:generate": "bun x drizzle-kit generate:pg --schema=./routes/schema/db/index.ts --out=./gen/db/migration/ddl"
   },
   "dependencies": {
-    "@tsndr/cloudflare-worker-jwt": "2.3.2",
-    "drizzle-orm": "^0.29.0",
+    "@hono/swagger-ui": "^0.2.2",
+    "@hono/zod-openapi": "^0.14.1",
+    "@tsndr/cloudflare-worker-jwt": "2.5.3",
+    "drizzle-orm": "^0.31.0",
     "drizzle-valibot": "beta",
-    "hono": "^3.10.1",
-    "miniflare": "3.20231030.0",
-    "valibot": "^0.20.1",
-    "@hono/swagger-ui": "^0.1.0",
-    "@hono/zod-openapi": "^0.8.5"
+    "hono": "^4.4.2",
+    "miniflare": "3.20240524.1",
+    "pg": "^8.11.5",
+    "tslog": "^4.9.2",
+    "valibot": "^0.30.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20231025.0",
-    "bun-types": "^1.0.12",
-    "drizzle-kit": "^0.20.2",
-    "typescript": "^5.2.2",
-    "wrangler": "^3.16.0",
-    "better-sqlite3": "^9.1.1"
+    "@cloudflare/workers-types": "^4.20240529.0",
+    "@types/pg": "^8.11.6",
+    "better-sqlite3": "^11.0.0",
+    "bun-types": "^1.1.12",
+    "drizzle-kit": "^0.22.1",
+    "typescript": "^5.4.5",
+    "wrangler": "^3.58.0"
   }
 }
