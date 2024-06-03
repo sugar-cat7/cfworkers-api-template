@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { v4 as uuidv4 } from 'uuid'
 import { MiddlewareHandler } from "hono";
 import { AppContext, HonoEnv } from "@/pkg/hono";
 import { env } from 'hono/adapter'
@@ -14,27 +14,26 @@ export function init(): MiddlewareHandler<HonoEnv> {
             console.error('Failed to parse environment variables', envResult.error)
             process.exit(1)
         }
-        const requestId = randomUUID();
+        const requestId = uuidv4();
         c.set("requestId", requestId);
         const logger = new AppLogger({
             env: envResult.data,
             requestId: requestId,
         });
 
-        const { db, client } = await createDB(
+        const db = await createDB(
             {
                 host: envResult.data.DB_HOST,
                 username: envResult.data.DB_USER,
-                password: envResult.data.DB_PASS,
+                password: envResult.data.DB_PASSWORD,
+                database: envResult.data.DB_NAME,
                 retry: 5,
             }
         )
-        c.executionCtx.waitUntil(client.end());
         c.set("services", {
             logger,
             db,
         });
-
         await next();
     };
 }

@@ -4,6 +4,10 @@ import { HTTPException } from "hono/http-exception";
 import type { StatusCode } from "hono/utils/http-status";
 import type { ZodError } from "zod";
 import type { HonoEnv } from "@/pkg/hono/env";
+import { AppLogger } from "../logging";
+import { env } from "hono/adapter";
+import { Env } from "../env";
+import { AppContext } from "../hono";
 
 const ErrorCodeSchema = z.enum([
     "BAD_REQUEST",
@@ -141,7 +145,7 @@ export const handleZodError = (
             success: false;
             error: ZodError;
         },
-    c: Context,
+    c: Context<HonoEnv>,
 ) => {
     if (!result.success) {
         return c.json<ErrorResponse, StatusCode>(
@@ -159,7 +163,11 @@ export const handleZodError = (
 }
 
 export const handleError = (err: Error, c: Context<HonoEnv>): Response => {
-    const { logger } = c.get("services");
+    const e = env<Env, AppContext>(c)
+    const logger = new AppLogger({
+        env: e,
+        requestId: c.get('requestId'),
+    })
     /**
      * We can handle this very well, as it is something we threw ourselves
      */

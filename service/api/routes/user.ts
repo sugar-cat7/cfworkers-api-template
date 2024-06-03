@@ -3,7 +3,7 @@ import type { App, AppContext } from "@/pkg/hono/app";
 import { createRoute } from "@hono/zod-openapi";
 import { UserPostBodySchema, UserResponseSchema } from "./schema/http";
 import { InsertUserTable, UserTableSchema } from "./schema/db";
-import { randomUUID } from "crypto";
+import { v4 as uuidv4 } from 'uuid'
 
 const postUserRoute = createRoute({
     tags: ["user"],
@@ -47,12 +47,12 @@ export const registerUserPostApi = (app: App) =>
         const { db } = c.get("services");
 
         const i: InsertUserTable = {
-            id: randomUUID(),
+            id: uuidv4(),
             name: validBody.data.name ?? "",
             email: validBody.data.email ?? "",
         }
 
-        const res = await db.transaction(async (tx) => {
+        const res = await db.query.transaction(async (tx) => {
             const q = await tx.insert(UserTableSchema).values(i).returning().execute();
             if (q.length < 1) {
                 await tx.rollback();
@@ -68,6 +68,7 @@ export const registerUserPostApi = (app: App) =>
             })
         }
 
+        c.executionCtx.waitUntil(db.client.end());
         return c.json({
             id: res.id,
             name: res.name,

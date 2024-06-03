@@ -4,7 +4,9 @@
   "main": "cmd/server/index.ts",
   "scripts": {
     "dev": "wrangler dev",
-    "db:generate": "bun drizzle-kit generate"
+    "db:generate": "bun drizzle-kit generate",
+    "db:migrate": "bun run cmd/db/migration/index.ts",
+    "db:up": "docker compose -f docker/compose.local.yaml up --build"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.2.2",
@@ -16,11 +18,13 @@
     "miniflare": "3.20240524.1",
     "pg": "^8.11.5",
     "tslog": "^4.9.2",
+    "uuid": "^9.0.1",
     "valibot": "^0.30.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",
     "@types/pg": "^8.11.6",
+    "@types/uuid": "^9.0.8",
     "better-sqlite3": "^11.0.0",
     "bun-types": "^1.1.12",
     "drizzle-kit": "^0.22.1",
