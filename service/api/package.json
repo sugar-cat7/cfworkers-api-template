@@ -4,7 +4,7 @@
   "main": "cmd/server/index.ts",
   "scripts": {
     "dev": "wrangler dev",
-    "db:generate": "bun x drizzle-kit generate:pg --schema=./routes/schema/db/index.ts --out=./gen/db/migration/ddl"
+    "db:generate": "bun drizzle-kit generate"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.2.2",
