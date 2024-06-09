@@ -23,7 +23,7 @@ export function init(): MiddlewareHandler<HonoEnv> {
 
         const db = await createDB(
             {
-                connectionString: envResult.data.DB_CONNECTION_STRING,
+                connectionString: envResult.data.HYPERDRIVE.connectionString,
                 retry: 5,
             }
         )

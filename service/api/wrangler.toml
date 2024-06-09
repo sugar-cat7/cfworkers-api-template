@@ -3,7 +3,9 @@ compatibility_date = "2024-06-03"
 send_metrics = false
 node_compat = true
 main = "cmd/server/index.ts"
+tail_consumers = [{ service = "api-tail" }]
 
 [[hyperdrive]]
-binding = "DB_CONNECTION_STRING"
+binding = "HYPERDRIVE"
 id = "xxx"
+localConnectionString = "postgres://user:password@localhost:5432/localdb"
