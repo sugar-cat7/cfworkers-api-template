@@ -4,6 +4,7 @@ send_metrics = false
 node_compat = true
 main = "cmd/server/index.ts"
 tail_consumers = [{ service = "api-tail" }]
+logpush = true
 
 [[hyperdrive]]
 binding = "HYPERDRIVE"

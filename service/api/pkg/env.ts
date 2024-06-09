@@ -12,6 +12,5 @@ export const zEnv = z.object({
         .transform((s) => s === 'true').default("false"),
     HYPERDRIVE: z.custom<Hyperdrive>((v) => typeof v === 'object'),
 });
-//z.string().default("postgresql://user:password@localhost:5432/localdb")
 
 export type Env = z.infer<typeof zEnv>;
