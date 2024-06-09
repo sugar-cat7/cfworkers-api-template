@@ -23,10 +23,7 @@ export function init(): MiddlewareHandler<HonoEnv> {
 
         const db = await createDB(
             {
-                host: envResult.data.DB_HOST,
-                username: envResult.data.DB_USER,
-                password: envResult.data.DB_PASSWORD,
-                database: envResult.data.DB_NAME,
+                connectionString: envResult.data.DB_CONNECTION_STRING,
                 retry: 5,
             }
         )

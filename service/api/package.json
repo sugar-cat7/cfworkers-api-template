@@ -4,6 +4,7 @@
   "main": "cmd/server/index.ts",
   "scripts": {
     "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
     "db:generate": "bun drizzle-kit generate",
     "db:migrate": "bun run cmd/db/migration/index.ts",
     "db:up": "docker compose -f docker/compose.local.yaml up --build"

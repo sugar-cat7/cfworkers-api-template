@@ -2,10 +2,7 @@ import { drizzle } from 'drizzle-orm/node-postgres'
 import { Client } from "pg";
 
 type ConnectionOptions = {
-    host: string;
-    username: string;
-    password: string;
-    database: string;
+    connectionString: string;
     retry: number | false;
     // logger?: Logger;
 };
@@ -17,7 +14,7 @@ export type Database = {
 };
 
 export const createDB = async (opts: ConnectionOptions): Promise<Database> => {
-    const client = new Client({ user: opts.username, host: opts.host, password: opts.password, database: opts.database });
+    const client = new Client(opts.connectionString);
     await client.connect();
     return {
         query: drizzle(client),

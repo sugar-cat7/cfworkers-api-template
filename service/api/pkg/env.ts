@@ -10,10 +10,7 @@ export const zEnv = z.object({
         .transform((s) => parseInt(s, 10)).default("0"),
     LOG_HIDE_POSITION: z.string()
         .transform((s) => s === 'true').default("false"),
-    DB_HOST: z.string().default('localhost'),
-    DB_PASSWORD: z.string().default('password'),
-    DB_USER: z.string().default('user'),
-    DB_NAME: z.string().default('localdb'),
+    DB_CONNECTION_STRING: z.string().default("postgresql://user:password@localhost:5432/localdb    "),
 });
 
 export type Env = z.infer<typeof zEnv>;
