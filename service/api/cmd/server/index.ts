@@ -1,17 +1,16 @@
-import { Env } from "@/pkg/env";
 import { newApp } from "@/pkg/hono/app";
 import { init } from "@/pkg/middleware";
-import { registerUserPostApi } from "@/routes/user";
+import { createHandler } from "@/pkg/otel";
+import { registerUserRandomPostApi } from "@/routes/user";
 
 const app = newApp();
+app.notFound((c) => {
+    return c.text('Not Found', 404)
+})
 app.use("*", init())
 
-registerUserPostApi(app);
+registerUserRandomPostApi(app);
 
 
-export default {
-    fetch(request: Request, env: Env, ctx: ExecutionContext) {
 
-        return app.fetch(request, env, ctx)
-    },
-}
+export default createHandler(app);

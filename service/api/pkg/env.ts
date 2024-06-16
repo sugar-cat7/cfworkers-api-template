@@ -11,6 +11,11 @@ export const zEnv = z.object({
     LOG_HIDE_POSITION: z.string()
         .transform((s) => s === 'true').default("false"),
     HYPERDRIVE: z.custom<Hyperdrive>((v) => typeof v === 'object'),
+    BASELIME_API_KEY: z.string(),
+    SERVICE_NAME: z.string(),
+    LOG_QUEUE: z.custom<Queue>(),
+    APP_QUEUE: z.custom<Queue>(),
+    APP_BUCKET: z.custom<R2Bucket>(),
 });
 
 export type Env = z.infer<typeof zEnv>;

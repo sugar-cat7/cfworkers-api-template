@@ -2,9 +2,7 @@
   "name": "app",
   "private": true,
   "version": "1.0.0",
-  "scripts": {
-    "db:generate": "bun run --cwd service/api db:generate"
-  },
+  "scripts": {},
   "workspaces": [
     "service/*"
   ],
