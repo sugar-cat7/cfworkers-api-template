@@ -1,5 +1,5 @@
-import { CustomApiError, openApiErrorResponses } from "@/pkg/errors";
-import type { App, AppContext } from "@/pkg/hono/app";
+import { CustomApiError, openApiErrorResponses } from "../pkg/errors";
+import type { App, AppContext } from "../pkg/hono/app";
 import { createRoute } from "@hono/zod-openapi";
 import { UserPostBodySchema, UserResponseSchema } from "./schema/http";
 import { InsertUserTable, UserTableSchema } from "./schema/db";

@@ -1,9 +1,9 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { swaggerUI } from '@hono/swagger-ui'
 import { prettyJSON } from "hono/pretty-json";
-import { handleError, handleZodError } from "@/pkg/errors";
 import type { HonoEnv } from "./env";
 import type { Context, Input } from "hono";
+import { handleZodError, handleError } from "../errors";
 
 export const newApp = () => {
     const app = new OpenAPIHono<HonoEnv>({

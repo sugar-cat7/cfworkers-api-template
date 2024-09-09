@@ -1,6 +1,6 @@
-import type { Env } from "@/pkg/env";
-import type { CustomLogger } from "@/pkg/logging";
-import { Database } from "@/pkg/db";
+import type { Env } from "../env";
+import type { CustomLogger } from "../logging";
+import { Database } from "../db";
 import { Tracer } from "@opentelemetry/api";
 
 export type ServiceContext = {

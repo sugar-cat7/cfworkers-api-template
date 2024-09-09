@@ -1,6 +1,5 @@
 import { migrate } from 'drizzle-orm/node-postgres/migrator'
-import { createDB } from '@/pkg/db'
-import { zEnv } from '@/pkg/env'
+import { createDB } from '../../../pkg/db'
 
 const main = async () => {
     // const envResult = zEnv.safeParse(process.env)

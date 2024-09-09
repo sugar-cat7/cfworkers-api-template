@@ -1,4 +1,4 @@
-import { ResolveConfigFn, instrument } from "@microlabs/otel-cf-workers"
+import { instrument, ResolveConfigFn } from "@microlabs/otel-cf-workers"
 import { Env } from "../env"
 import { App } from "../hono";
 import { trace } from "@opentelemetry/api";
