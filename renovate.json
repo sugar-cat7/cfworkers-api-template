@@ -1,0 +1,68 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended"
+    ],
+    "rangeStrategy": "bump",
+    "timezone": "Asia/Tokyo",
+    "schedule": [
+        "before 9am every Monday"
+    ],
+    "dependencyDashboard": false,
+    "branchPrefix": "renovate/",
+    "prHourlyLimit": 0,
+    "prConcurrentLimit": 3,
+    "branchConcurrentLimit": 3,
+    "baseBranches": [
+        "main"
+    ],
+    "rebaseWhen": "conflicted",
+    "enabledManagers": [
+        "npm"
+    ],
+    "labels": [
+        "dependencies",
+        "renovate"
+    ],
+    "commitMessagePrefix": "renovate:",
+    "commitMessageAction": "update",
+    "commitMessageTopic": "{{#if isPatch}}patch{{else}}{{depName}}{{/if}} in {{#if parentDir}}{{parentDir}}{{else}}root{{/if}}",
+    "commitMessageExtra": "{{#unless isPatch}}to {{newVersion}}{{/unless}}",
+    "commitMessageSuffix": "",
+    "packageRules": [
+        {
+            "matchPaths": [
+                "services/api-server/**/package.json",
+                "services/web/**/package.json"
+            ],
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "groupName": "Patch updates",
+            "automerge": true
+        },
+        {
+            "matchPaths": [
+                "services/api-server/**/package.json",
+                "services/web/**/package.json"
+            ],
+            "matchUpdateTypes": [
+                "minor"
+            ],
+            "groupName": "Minor updates",
+            "automerge": false
+        },
+        {
+            "matchPaths": [
+                "services/api-server/**/package.json",
+                "services/web/**/package.json"
+            ],
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "separateMajorMinor": true,
+            "groupName": null,
+            "automerge": false
+        }
+    ]
+}

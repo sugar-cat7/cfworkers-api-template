@@ -2,16 +2,20 @@
   "name": "app",
   "private": true,
   "version": "1.0.0",
-  "scripts": {},
-  "workspaces": [
-    "packages/*"
-  ],
+  "scripts": {
+    "fix": "biome check --write .",
+    "format": "biome format .",
+    "knip": "knip"
+  },
   "dependencies": {
     "@babel/runtime": "^7.25.6",
-    "@biomejs/biome": "1.8.3",
+    "@biomejs/biome": "1.9.0",
     "@manypkg/cli": "^0.21.4",
     "check-dependency-version-consistency": "^4.1.0",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "knip": "^5.30.1"
   }
 }

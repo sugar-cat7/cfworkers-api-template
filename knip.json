@@ -1,0 +1,22 @@
+{
+    "entry": [
+        "services/api-server/cmd/server/index.ts"
+    ],
+    "project": [
+        "services/**/*.ts",
+        "services/**/*.tsx"
+    ],
+    "ignore": [
+        "**/*.d.ts",
+        "**/.wrangler/**",
+        "**/workbox*.js",
+        "**/fallback*.js",
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.git/**",
+        "**/.vscode/**",
+        "**/.next/**",
+        "**/.vercel/**"
+    ]
+}
